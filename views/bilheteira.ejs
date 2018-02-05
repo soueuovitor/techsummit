@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700" rel="stylesheet">
+
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/css/bootstrapValidator.min.css" rel="stylesheet">
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="/public/css/frontend/bilheteira.css">
+  <link rel="stylesheet" href="/public/css/frontend/fundo.css">
+
+  <script src="/public/backend/vendors/validator/validator.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $("#compra").click(function(){
+        $("#teste").slideToggle("show");
+        $("#bilhete").slideToggle();
+      });
+      $("#cancelar").click(function(){
+        $("#teste").slideToggle("show");
+        $("#bilhete").slideToggle();
+      });
+    });
+  </script>
+</head>
+
+<body>
+<% for (var c of data) { %>
+
+	<div>
+		<div class="container">
+      <div class="header clearfix">
+			  <div id="teste" class="row">
+  	       <div class="col-lg-4"></div>
+           <div class="col-lg-4 col-md-6 col-sm-6">
+             <div class="ticket-card">
+               <div class="cover">
+                 <img src="/public/img/bilheteira/Tech.png" alt="" />
+                 <div class="info">
+                   <div class="going">
+                     <i class="fa fa-group"> <%= user.name %></i>
+                   </div>
+                   <div class="tickets-left">
+                     <i class="fa fa-ticket"> Faltam <%= c.lotacaoW %> Bilhetes </i>
+					
+					<script type="text/javascript">
+						function lotacao() {
+						
+							var lotacao = <%= c.lotacaoW %>;
+
+							var total = lotacao - vendidos;
+							document.getElementById('resultadoT').innerHTML = total;
+						}						
+					</script>
+					 
+                   </div>
+                 </div>
+               </div>
+               <div class="body">
+                 <div class="artist">
+                   <br>
+                   <h4 class="name"><%= c.nomeW %> </h4>
+                 </div>
+                 <div class="price">
+                   <div class="from">Preço</div>
+                   <div class="value">
+                     <b>€ </b><%= c.precoBilhete %>
+                   </div>
+                 </div>
+                 <div class="info">
+                   <p class="location">
+                     <i class="fa fa-map-marker"></i> <%= c.localW %>
+                   </p>
+                   <p class="date">
+                     <i class="fa fa-calendar"></i> <%= c.data_inicioW %>
+                   </p>
+                 </div>
+                 <div class="clearfix"></div>
+               </div>
+               <div class="footer">
+                 <button id="compra" class="btn toggle-tickets">Comprar Bilhetes</button>
+               </div>
+               <div align="center">
+                <p><button class="w3-button w3-block w3-black" onclick="window.open('/','_self')">Voltar</button></p>
+              </div>
+             </div>
+           </div>
+         </div>
+       </div>
+       
+       <!--div-->
+	   <form action="/bilheteira/createBilhete" method="post">
+<div id="bilhete" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" style="display:none" aria-hidden="true">
+ <div class="modal-dialog modal-lg">
+   <div class="modal-content">
+     <table id="cart" class="table table-hover table-condensed">
+         <thead>
+           <tr>
+             <th style="width:50%">Bilhete</th>
+             <th style="width:10%">Preço</th>
+             <th style="width:8%">Quantidade</th>
+             <th style="width:22%" class="text-center">Total</th>
+             <th style="width:10%"></th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <td data-th="Product">
+               <div class="row">
+                 <div class="col-sm-2 hidden-xs"></div>
+                 <div class="col-sm-10">
+                   <select class="form-control" style with="20px" id="datas" required="required" name="datas"><span class="required">*</span></select>
+                   
+                 </div>
+               </div>
+             </td>
+             <td data-th="Price" id="price">€ <%= c.precoBilhete %></td>
+             <td data-th="Quantity">
+               <input type="number" id="num" class="form-control text-center" value="0" min="0" max="10" onclick="calcula()" name="rep">
+			   
+			   <input type="text" value="<%= user.username %>" name="nome"  hidden>		
+         <input type="text" id="resultadoB" name="lotacaoF" hidden >			   
+             </td>
+             <td data-th="Subtotal" id="resultado" class="text-center"></td>
+			 <td data-th="Subtotal" id="resultadoB" class="text-center" name="lotacaot" ></td> <!-- contem a lotacao apos venda de bilhetes -->
+             <td class="actions" data-th="">
+             </td>
+           </tr>
+         </tbody>
+         <tfoot>
+           <tr>
+             <td colspan="2" class="hidden-xs"></td>
+             <td><button id="cancelar" class="btn btn-danger toggle-tickets" onclick="window.open('/bilheteira','_self')">Cancelar</button></td>
+           </tr>
+         </tfoot>
+       </table>
+   </div>
+ </div>
+</div>
+
+</form>
+     </div>
+</div>
+<script type="text/javascript">
+  function calcula() {
+  
+    var precoB = <%= c.precoBilhete %>;							
+    var num = Number(document.getElementById("num").value);
+    var total = precoB * num;
+    var lotacao =  <%= c.lotacaoW %>;
+    var totalB = lotacao - num;
+    document.getElementById('resultado').innerHTML = total;
+    document.getElementById('resultadoB').value = totalB;
+  }						
+  
+  window.onload = function datas(){
+    var start = new Date( '<%= parametros[0].data_inicioW %>');
+    var end = new Date( '<%= parametros[0].data_fimW %>');
+
+    while(start <= end){
+      var x = document.getElementById("datas");
+      var option = document.createElement("option");
+
+      option.text = start.toLocaleDateString();
+      x.add(option);
+
+      var newDate = start.setDate(start.getDate() + 1);
+      start = new Date(newDate);
+    }
+    }
+
+</script>
+<%} %>
+</body>
+
+</html>

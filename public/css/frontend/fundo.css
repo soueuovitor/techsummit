@@ -1,0 +1,19 @@
+body{
+  background: url(/public/assets/images/login1.jpg) top center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  font-weight: bold;
+}
+
+a{
+	text-decoration: none!important;
+	color: #fed136!important;
+	font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif!important;
+}
+
+
+h3{
+	
+	color : white;
+}

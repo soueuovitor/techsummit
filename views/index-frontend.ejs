@@ -1,0 +1,219 @@
+<% include partials/header-frontend %>
+
+		 <!-- Speakers  -->
+        <section class="module" id="speakers">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6 col-sm-offset-3">
+                <h2 class="module-title font-alt">Os Nossos Speakers</h2>
+                <div class="module-subtitle font-serif">“Eu penso que, se fizes-te algo e isso se tornou realmente bom, então deves realizar mais alguma coisa incrível, sem te apoiares nisso por muito tempo. Apenas descubre o que está por vir”</div>
+              </div>
+            </div>
+            <div class="row multi-columns-row">
+			<% for (var s of speaker) { %>
+              <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="features-item">
+                  <div class="features-icon"><img  class="img-fluid" style= "height:250px; width:270px" src="./public/uploads/speakers/<%= s.nomeS %>.jpg" alt="Sponsor Photo"></div>
+                  <h3 class="features-title font-alt"><%= s.nomeS %></h3>
+                  <p><%= s.funcao %></p>
+                </div>
+              </div>
+ 			 <%} %>
+            </div>
+          </div>
+        </section>
+		
+	  	<!-- Bilhetes  -->
+		  <section class="module-small bg-dark" id="comprarB">
+          <div class="container">
+            <!-- se autenticado vai para bilheteira-->
+              <% if (isAuthenticated) { %>
+            <div class="row">
+              <div class="col-sm-6 col-md-8 col-lg-6 col-lg-offset-2">
+                <div class="callout-text font-alt">
+                  <h3 class="callout-title">Eu sabia que não ias resistir !</h3>
+                  <p>Compra ja os teus bilhetes antes que esgotem</p>
+                </div>
+              </div>
+              <div class="col-sm-6 col-md-4 col-lg-2">
+                <div class="callout-btn-box"><a class="btn btn-w btn-round" href="/bilheteira">Bilheteira</a></div>
+              </div>
+            </div>
+            <% } else { %> <!-- se não autenticado vai para login-->
+              <div class="row">
+                  <div class="col-sm-6 col-md-8 col-lg-6 col-lg-offset-2">
+                    <div class="callout-text font-alt">
+                      <h3 class="callout-title">Queres ver os nossos Speaker ao vivo?</h3>
+                      <p>Faz login e compra ja os teus bilhetes</p>
+                    </div>
+                  </div>
+                  <div class="col-sm-6 col-md-4 col-lg-2">
+                    <div class="callout-btn-box"><a class="btn btn-w btn-round" href="/login">Login</a></div>
+                  </div>
+                </div>
+              <% } %>
+          </div>
+        </section>
+		
+		<!-- Portfolio  -->
+        <section class="module bg-dark-60 pt-0 pb-0 parallax-bg testimonial js-scroll-trigger" data-background="assets/images/testimonial_bg.jpg" id="portfolio">
+          <div class="testimonials-slider pt-140 pb-140">
+            <ul class="slides">
+              <li>
+                <div class="container">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="module-icon"><span class="icon-quote"></span></div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2">
+                      <blockquote class="testimonial-text font-alt">É bom comemorar o sucesso, mas é mais importante prestar atenção às lições do fracasso.</blockquote>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4 col-sm-offset-4">
+                      <div class="testimonial-author">
+                        <div class="testimonial-caption font-alt">
+                          <div class="testimonial-title">Bill Gates</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="container">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="module-icon"><span class="icon-quote"></span></div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2">
+                      <blockquote class="testimonial-text font-alt">Os dias prósperos não vêm por acaso, nascem de muita fadiga e persistência.</blockquote>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4 col-sm-offset-4">
+                      <div class="testimonial-author">
+                        <div class="testimonial-caption font-alt">
+                          <div class="testimonial-title">Henry Ford</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="container">
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="module-icon"><span class="icon-quote"></span></div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-8 col-sm-offset-2">
+                      <blockquote class="testimonial-text font-alt">A chave para o sucesso é focar-se nas coisas que deseja e não nas coisas de que tem medo.</blockquote>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-4 col-sm-offset-4">
+                      <div class="testimonial-author">
+                        <div class="testimonial-caption font-alt">
+                          <div class="testimonial-title">Brian Tracy</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </section>
+        <hr class="divider-w">
+		
+		<!-- Cartaz -->
+        <section class="module js-scroll-trigger" id="cartaz">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6 col-sm-offset-3">
+                <h2 class="module-title font-alt">Vê aqui as ultimas do nosso cartaz</h2>
+                <div class="module-subtitle font-serif">O aqui é imenso, mas o agora é eterno</div>
+              </div>
+            </div>
+            <div class="row multi-columns-row post-columns">
+			<% for (var s of sessoes) { %>
+              <div class="col-sm-6 col-md-4 col-lg-3">		  
+                <div class="post mb-20">
+                  <div class="post-thumbnail"><img style= "height:300px; width:262px" src="./public/uploads/speakers/<%= s.nome %>.jpg" alt="Cartaz Photo"/></div>
+                  <div class="post-header font-alt">
+                    <h2 class="post-title"><%= s.tituloS %></h2>
+                    <div class="post-meta">By&nbsp; <%= s.nome %>&nbsp;| <%= s.dataSessao %> </br>
+					das <%= s.horaI %> as <%= s.horaF %> </div>
+                  </div>
+                  <div class="post-entry">
+                    <p> <%= s.descS %> </p>
+                  </div>			
+                </div>
+              </div>
+			  <%} %>
+            </div>
+          </div>
+        </section>
+		
+		<!-- Sponsors  -->
+        <section class="module js-scroll-trigger" id="sponsors">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-6 col-sm-offset-3">
+                <h2 class="module-title font-alt">Os nossos Sponsors</h2>
+              </div>
+            </div>
+            <div class="row">
+			<% for (var p of patrocinadores) { %>
+              <div class="mb-sm-20 col-sm-6 col-md-4">
+                <div class="team-item">
+                  <div class=""><img style= "height:100px; width:100px" src="./public/uploads/patrocinadores/<%= p.nomeP %>.jpg" alt="Sponsor Photo"/>
+                  </div>
+                  <div class="team-descr font-alt">
+                    <div class="team-name"><%= p.nomeP %></div>
+                  </div>
+                </div>
+              </div>
+			  <%} %>
+            </div>
+          </div>
+        </section>
+		
+		<!-- Onde Estamos-->
+        <div class="module-small bg-dark">
+          <div class="container">
+		        <div class="row">
+              <div class="col-sm-6 col-sm-offset-3">
+                <h2 class="module-title font-alt">Onde estamos</h2>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6 col-sm-offset-3">
+                <div id="map"></div>
+				          <script>
+				              function initMap() {
+				             	  var uluru = {lat: 41.450945, lng:  -8.2929927};
+                        var map = new google.maps.Map(document.getElementById('map'), {zoom: 16,
+                                                                                       center: uluru
+					                                                                            });
+				              	var marker = new google.maps.Marker({position: uluru,
+					                                                   map: map
+				                                                  	});
+                      }
+				        </script>
+				        <script async defer
+			          	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDJYZSjv318VYjkg_QGh5FWxW8knl4ksDo&callback=initMap">
+				        </script>	  
+              </div>
+            </div>
+          </div>
+        </div>
+		
+<% include partials/footer-frontend %>

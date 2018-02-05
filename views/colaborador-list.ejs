@@ -1,0 +1,56 @@
+<% include partials/header-backend %>
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Listagem <small>dos colaboradores</small></h3>
+              </div>
+			</div>
+            <div class="row">
+              <div class="col-md-12 col-sm-6 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Colaboradores</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <table class="table table-striped" id='tabela'>
+                      <thead>
+                        <tr>
+                          <th>Nome</th>
+                          <th>Email</th>
+                          <th>Morada</th>
+                          <th>Contacto</th>
+                          <th>Função</th>
+                          <th>Tipo</th>
+                          <th>NIF</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% for (var c of data) { %>
+                          <tr>
+                            <td><a href="/colaborador/<%= c.idColaboradores %>"><%= c.nomeC %></a></td>
+                            <td><%= c.email %></td>
+                            <td><%= c.morada %></td>
+                            <td><%= c.telemovel %></td>
+                            <td><%= c.funcao %></td>
+                            <td><%= c.tipo %></td>
+                            <td><%= c.nif %></td>
+                          </tr>
+                          <%} %>
+                      </tbody>
+                    </table>
+                    <a href="/colaborador/createColab"><button type="submit" class="btn btn-success" id="toggler">Adicionar Colaborador</button></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+		   </div>
+        </div>
+        <!-- /page content -->
+<% include partials/footer-backend %>

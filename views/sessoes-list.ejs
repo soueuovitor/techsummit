@@ -1,0 +1,54 @@
+<% include partials/header-backend %>
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3>Listagem <small>das Sessões</small></h3>
+              </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-6 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Marcação de Sessões</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <table class="table table-striped" id = "tabela">
+                      <thead>
+                        <tr>
+                          <th>Nome</th>
+                          <th>Data da Sessão</th>
+                          <th>Hora de Inicio</th>
+                          <th>Hora de Encerramento</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% for (var s of data) { %>
+                          <tr>
+                            <td><a href="/sessoes/<%= s.idsessoes %>"><%= s.nome %></a></td>
+                            <td><%= s.dataSessao %></td>
+                            <td><%= s.horaI %></td>
+                            <td><%= s.horaF %></td>
+                          </tr>
+                        <%} %>
+                      </tbody>
+                    </table>
+					
+					<a href="/sessoes/createSessoes"><button type="submit" class="btn btn-success" id="addWorkshop">Add Sessões</button></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /page content -->
+<% include partials/footer-backend %>

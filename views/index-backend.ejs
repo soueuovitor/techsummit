@@ -1,0 +1,172 @@
+<% include partials/header-backend %>
+
+    <%
+    var bilhetes = bilheteira.length
+    var colaboradores = colaborador.length
+    var patrocinios = patrocinador.length
+    var speakers = speaker.length
+
+    var precob = parametros[0].precoBilhete
+    var cache = parametros[0].cacheS
+    var lotacao = parametros[0].lotacaoW
+    
+    var dinheiroBil = bilhetes * precob
+
+    var dinheiroPat = 0
+
+    for(var i = 0; i < patrocinios; i++){
+      dinheiroPat = dinheiroPat + patrocinador[i].valor
+    }
+    
+    var dinheiroSep = speakers * cache
+
+    var dinheiroCol = colaboradores * cache
+
+    var total = dinheiroBil + dinheiroPat - dinheiroSep - dinheiroCol
+
+
+    var totalper = dinheiroBil + dinheiroPat + dinheiroSep + dinheiroCol
+    var pbil = ((dinheiroBil * 100) / totalper).toFixed(2)
+    var pcol = ((dinheiroCol * 100) / totalper).toFixed(2)
+    var ppat = ((dinheiroPat * 100) / totalper).toFixed(2)
+    var pspe = ((dinheiroSep * 100) / totalper).toFixed(2)
+
+    %>
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <!-- top tiles -->
+          <div class="row tile_count">
+            <div class="col-md-1 col-sm-4 col-xs-6 tile_stats_count">               
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">               <!--  Total  -->
+              <span class="count_top"><i class="fa fa-eur"></i> Total</span>
+
+              <% if(total > 0){ %>
+                <div class="count green"><%= total %></div>
+              <% } else if(total == 0){ %>
+                <div class="count"><%= total %></div>
+              <% } else{ %>
+                <div class="count red"><%= total %></div>
+              <% } %>
+            </div>	
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">               <!--  Bilhetes  -->
+              <span class="count_top"><i class="fa fa-ticket"></i> Bilhetes</span>
+              <div class="count green"><%= dinheiroBil %></div>
+              <span class="count_bottom"> Nº Bilhetes vendidos: <i><%= bilhetes %></i></span>    <!-- numero de bilhetes  -->
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">               <!--  Patrocinios  -->
+              <span class="count_top"><i class="fa fa-handshake"></i> Patrocinios</span>
+              <div class="count green"><%= dinheiroPat %></div>
+              <span class="count_bottom">Patrocinios adquiridos:<i><%= patrocinios %></i></span>
+            </div>
+            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">               <!--  Speakers  -->
+              <span class="count_top"><i class="fa fa-user"></i> Speakers</span>
+              <div class="count red"><%= dinheiroSep %></div>
+              <span class="count_bottom">Speakers contratados:<i><%= speakers %></i></span>
+            </div>
+            <div class="col-md-3 col-sm-4 col-xs-6 tile_stats_count">               <!--  Colaboradores  -->
+              <span class="count_top"><i class="fa fa-users"></i> Colaboradores</span>
+              <div class="count red"><%= dinheiroCol %></div>
+              <span class="count_bottom">Colaboradores contratados:<i><%= colaboradores %></i></span>
+            </div>
+          </div>
+          <!-- /top tiles -->
+
+          <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="x_panel">
+                <div class="x_title">
+                  <h2>Patrocinios</h2>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <script>
+                        var x = [];
+                        var max = <%= patrocinador.length %>;
+                        console.log(max);
+                        
+                        x.push({patrocinio: "Tiago",contribuicao:20});
+                        console.log(x);
+                        // patrocinio / contribuicao
+                    </script>
+                  <div id="graph_bar" style="width:100%; height:280px;"></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <br />
+
+          <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12">
+              <div class="x_panel tile fixed_height_320 overflow_hidden">
+                <div class="x_title">
+                  <h2>Balanço</h2>
+                  <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                  <table class="" style="width:100%">
+                    <tr>
+                      <th style="width:37%;">
+                      </th>
+                      <th>
+                        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                          <p class="">Device</p>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                          <p class="">Peso(%)</p>
+                        </div>
+                      </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <script>
+                                var origem = ["Bilhetes","Patrocinios","Speakers","Colaboradores"];
+                                var dados = [<%= pbil %>,<%= ppat %>,<%= pspe %>,<%= pcol %>]; 
+                              </script>
+                            <canvas class="canvasDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+                          </td>
+                      <td>
+                        <table class="tile_info">
+                          <tr>
+                            <td>
+                              <p><i class="fa fa-square blue"></i>Bilhetes</p>
+                            </td>
+                            <td><%= pbil %></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p><i class="fa fa-square green"></i>Patrocinios </p>
+                            </td>
+                            <td><%= ppat %></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p><i class="fa fa-square purple"></i>Speakers </p>
+                            </td>
+                            <td><%= pspe %></td>
+                          </tr>
+                          <tr>
+                            <td>
+                              <p><i class="fa fa-square aero"></i>Colaboradores </p>
+                            </td>
+                            <td><%= pcol %></td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- /page content -->
+<% include partials/footer-backend %>
+
+        

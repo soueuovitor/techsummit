@@ -1,0 +1,129 @@
+<% include partials/header-backend %>
+
+        <!-- page content -->
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+              </div>
+
+
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="x_panel">
+                  <div class="x_title">
+                    <h2>Colaboradores <small>Registos & Updates</small></h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                      </li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                        <ul class="dropdown-menu" role="menu">
+                          <li><a href="#">Settings 1</a>
+                          </li>
+                          <li><a href="#">Settings 2</a>
+                          </li>
+                        </ul>
+                      </li>
+                      <li><a class="close-link"><i class="fa fa-close"></i></a>
+                      </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                  </div>
+                  <div class="x_content">
+                    <div>
+                      <% if (errors.length) { %>  
+                        <div class="alert alert-danger">
+                          <ul>
+                          <% for (var e of errors) { %>
+                            <li><%= e.msg %></li>
+                          <% }%>
+                          </ul>
+                        </div>	
+                      <% } %>	
+                    </div> 
+                    <form action="/colaborador/<%= (isNew) ? 'createColab' : colaborador.idColaboradores %>" method="post" class="form-horizontal form-label-left" novalidate>
+
+                      <span class="section">Informação Pessoal</span>
+
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nome">Nome <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input class="form-control col-md-7 col-xs-12" data-validate-length-range="6" data-validate-words="2" id="nome" placeholder="Nome do colaborador" name="nome" value="<%= colaborador.nomeC %>"  required="required" type="text">
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="email" id="email" placeholder="Email" name="email" value="<%= colaborador.email %>" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="morada">Morada<span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="morada" placeholder="Insira a Morada" name="morada" value="<%= colaborador.morada %>" data-validate-length-range="6" data-validate-words="2" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="telemovel">Telemovel <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" name="telemovel" placeholder="Telemovel" pattern="[0-9]{9}" value="<%= colaborador.telemovel %>" class="optional form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="funcao">Função a Desempenhar <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" id="funcao" placeholder="Função" name="funcao" value="<%= colaborador.funcao %>" required="required" class="form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nif">NIF <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="text" name="nif" placeholder="NIF" pattern="[0-9]{9}" value="<%= colaborador.nif %>" class="optional form-control col-md-7 col-xs-12">
+                        </div>
+                      </div>
+                      <div class="item form-group">
+                        <label for="tipo" class="control-label col-md-3">Tipo</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+							<div class="form-group" required="required">
+								<select class="tipo" data-style="btn-info" name="tipo">
+									<option name="Valuntario">Voluntario</option>
+									<option name="Pago">Pago</option>
+								</select>
+							</div>
+                        </div>
+                      </div>
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3">
+                          <button class="btn btn-primary" onclick="window.open('/colaborador','_self')">Cancel</button>
+
+                          
+                          <script type="text/javascript">
+                            function removeRecord() {
+                              if (confirm('Deseja mesmo remover este Colaborador?')) {
+                                window.open("<%= '/colaborador/' + colaborador.idColaboradores + '/delete'%>",'_top')
+                              }
+                            }
+                          </script>
+
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /page content -->
+<% include partials/footer-backend %>

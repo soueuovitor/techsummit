@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Tech Summit | </title>
+
+    <!-- Bootstrap -->
+    <link href="../public/backend/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="../public/backend/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="../public/backend/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- Animate.css -->
+    <link href="../public/backend/vendors/animate.css/animate.min.css" rel="stylesheet">
+
+    <!-- Custom Theme Style -->
+    <link href="../public/backend/build/css/custom.min.css" rel="stylesheet">
+    <link href="./public/assets/css/style.css" rel="stylesheet">
+  </head>
+
+  <body class="login">
+    <div>
+      <a class="hiddenanchor" id="signup"></a>
+      <a class="hiddenanchor" id="signin"></a>
+
+      <div class="login_wrapper">
+        <div class="animate form login_form">
+          <section class="login_content">
+            <form action="/login" method="post">
+              <h1>Login </h1>
+              <div>
+                <% if (errors.length) { %>  
+                  <div class="alert alert-danger">
+                    <ul>
+                    <% for (var e of errors) { %>
+                      <li><%= e.msg %></li>
+                    <% }%>
+                    </ul>
+                  </div>	
+                <% } %>	
+              </div> 
+              <div>
+                <input type="text" class="form-control" id="username" placeholder="Inserir Username" name="username" required="" value="admin" />
+              </div>
+              <div>
+                <input type="password" class="form-control" id="password" placeholder="Inserir Password" name="password" required="" value="11111111" />
+              </div>
+              <div>
+                <button class="btn btn-default submit" type="submit">Log in</button>
+              </div>
+              <div class="clearfix"></div>
+              <div class="separator">
+                <p class="change_link">Novo no site?
+                  <a href="#signup" class="to_register"> Criar Conta </a>
+                </p>
+              </div>
+            </form>
+          </section>
+        </div>
+
+        <div id="register" class="animate form registration_form">
+          <section class="login_content">
+            <form encType="multipart/form-data" action="/login/create" method="post">
+              <h1>Criar Conta</h1>
+			  <div>
+                <input type="text" class="form-control" id="name" placeholder="Inserir Nome" name="name" required="" />
+              </div>
+              <div>
+                <input type="text" class="form-control" id="morada" placeholder="Inserir Morada" name="morada" required="" />
+              </div>
+              <div>
+                <input type="text" class="form-control" id="telemovel" placeholder="Inserir Telomovel" name="telemovel" pattern="[0-9]{9}" required="" />
+              </div>
+              <div>
+                <input type="text" class="form-control" id="nif" placeholder="Inserir Nif" name="nif" pattern="[0-9]{9}" required="" />
+              </div>
+              <div>
+                <input type="email" class="form-control" id="email" placeholder="Inserir Email" name="email" required="" />
+              </div>
+              <div>
+                <input type="text" class="form-control" id="username" placeholder="Inserir Username" name="username" minlength="5" required="" />
+              </div>
+              <div>
+                <input type="password" class="form-control" id="password" placeholder="Inserir password" name="password" minlength="8" required="" />
+              </div>
+			  <div>
+                <input name="sampleFile" placeholder="Inserir Foto" type="file">
+              </div>
+              <br>
+              <div>
+                <button class="btn btn-default submit" type="submit">Criar Conta</button>
+              </div>
+              <div class="clearfix"></div>
+
+              <div class="separator">
+                <p class="change_link">Já é um utilizador ?
+                  <a href="#signin" class="to_register"> Log in </a>
+                </p>
+                <div class="clearfix"></div>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
